@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/1.png'); 
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* чтобы убрать возможность скроллинга */
+}
+
+
+/* Variables */
+:root {
+  --border-size: 4px;
+  --base-color: #141418;
+  --retro-font: "Press Start 2P", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Mixin */
+@keyframes btn-hover {
+  to {
+    background-color: var(--hover-background);
+    box-shadow: inset -4px -4px var(--shadow);
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes btn-active {
+  to {
+    box-shadow: inset -4px -4px lighten(var(--shadow), 10%);
+    transform: translateY(1px);
+  }
+}
+
+/* Button Styles */
+.button-retro {
+  position: absolute;
+  top: 629px; /* Новая позиция от верхнего края страницы */
+  left: 1024px; /* Новая позиция от левого края страницы */
+  padding: 10px 12px;
+  font-family: var(--retro-font);
+  color: var(--base-color);
+  background-color: var(--base-background);
+  box-shadow: inset -3px -3px var(--shadow);
+  will-change: transform;
+  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+  border-radius: 5px; /* Скругление углов */
+
+  &:hover {
+    background-color: var(--hover-background);
+    animation: btn-hover 0.1s forwards;
+  }
+
+  &:active {
+    background-color: var(--hover-background);
+    animation: btn-active 0.1s forwards;
+  }
+
+  &:focus {
+    outline: 4px solid currentColor;
+  }
+
+  /* Border for button */
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--border-size));
+    left: calc(-1 * var(--border-size));
+    right: calc(-1 * var(--border-size));
+    bottom: calc(-1 * var(--border-size));
+    border: var(--border-size) solid var(--base-color);
+  }
+}
+
+/* Button Types */
+
+.button-retro.is-primary {
+  --base-background: #851818;
+  --hover-background: #a01b1b;
+  --shadow: #742d2d;
+  top: 460px; 
+  left: 905px
+}
+.button-retro.is-success {
+  --base-background: #135480;
+  --hover-background: #16669b;
+  --shadow: #235170;
+  top: 400px; 
+  left: 905px
+}
+
+.back {
+  position: absolute;
+  top: 600px;
+  left: 1076px;
+  padding: 11px 12px;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: var(--retro-font);
+  border: var(--border-size) solid var(--base-color);
+}
+/* Body Styles */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--retro-font);
+}
+
