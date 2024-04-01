@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <link rel="stylesheet" href="style-16.css">
+        <meta charset="UTF-8">
+        <link href="https://fonts.cdnfonts.com/css/common-pixel" rel="stylesheet">
+        <title>Hash</title>
+    </head>
+    <body>
+        <div class="typewriter" id="typewriterContainer">
+          <h1></h1>
+        </div>
+      
+        <div class="button-container">
+          <button id="backButton" onclick="showPrevious()">Back</button>
+          <button id="nextButton" onclick="showNext()">Next</button>
+        </div>
+      
+        <script>
+          const texts = [
+            "> Привет! Хочешь узнать что такое 'Асимметричные алгоритмы?'",
+            "> Теперь поговорим о важном"
+          ];
+          let currentTextIndex = 0;
+          const delay = 50; // Задержка между появлением символов (в миллисекундах)
+      
+          function typeWriter(text, i) {
+            if (i < text.length) {
+              document.querySelector('.typewriter h1').textContent += text.charAt(i);
+              i++;
+              setTimeout(function() {
+                typeWriter(text, i);
+              }, delay);
+            }
+          }
+      
+          function showNext() {
+            currentTextIndex++;
+            if (currentTextIndex >= texts.length) {
+              currentTextIndex = 0;
+            }
+            displayText(texts[currentTextIndex]);
+          }
+      
+          function showPrevious() {
+            currentTextIndex--;
+            if (currentTextIndex < 0) {
+              currentTextIndex = texts.length - 1;
+            }
+            displayText(texts[currentTextIndex]);
+          }
+      
+          function displayText(text) {
+            document.querySelector('.typewriter h1').textContent = ''; // Очистить текущий текст
+            typeWriter(text, 0);
+          }
+      
+          // Начать печать текста при загрузке страницы
+          document.addEventListener("DOMContentLoaded", function() {
+            displayText(texts[currentTextIndex]);
+            document.getElementById("backButton").style.display = "inline";
+            document.getElementById("nextButton").style.display = "inline";
+          });
+        </script>
+      </body>
+      </html>
